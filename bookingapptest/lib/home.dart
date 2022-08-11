@@ -56,13 +56,15 @@ class _BookingPageState extends State<BookingPage> {
     ///here you can parse the streamresult and convert to [List<DateTimeRange>]
     ///Note that this is dynamic, so you need to know what properties are available on your result, in our case the [SportBooking] has bookingStart and bookingEnd property
     List<DateTimeRange> converted = [];
-    // for (var i = 0; i < streamResult.size; i++) {
-    //   final item = streamResult.docs[i].data();
-    //   print('1');
-    //   print(item.toJson());
-    //   converted.add(
-    //       DateTimeRange(start: (item.bookingStart!), end: (item.bookingEnd!)));
-    // }
+    
+    //Here's the problem. StreamResult causes stack overflow on the widget
+    for (var i = 0; i < streamResult.size; i++) {
+      final item = streamResult.docs[i].data();
+//       print('1');
+//       print(item.toJson());
+      converted.add(
+          DateTimeRange(start: (item.bookingStart!), end: (item.bookingEnd!)));
+    }
         
     return converted;
   }
