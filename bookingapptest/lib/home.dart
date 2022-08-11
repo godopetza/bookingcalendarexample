@@ -148,14 +148,12 @@ class _BookingPageState extends State<BookingPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: BookingCalendar(
+        body: BookingCalendar(
             bookingService: myBookingService,
             getBookingStream: getBookingStreamFirebase,
             uploadBooking: uploadBookingMock,
             convertStreamResultToDateTimeRanges: convertStreamResultFirebase,
             bookingExplanation: _bookingexplaination(),
-          ),
         ),
       ),
     );
